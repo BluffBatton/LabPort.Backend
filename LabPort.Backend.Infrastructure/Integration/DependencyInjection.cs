@@ -11,6 +11,7 @@ namespace LabPort.Backend.Infrastructure.Integration
         {
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IUserContextService, UserContextService>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
 
             return services;
         }

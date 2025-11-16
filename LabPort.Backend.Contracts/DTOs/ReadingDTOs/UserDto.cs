@@ -10,5 +10,9 @@ namespace LabPort.Backend.Contracts.DTOs.ReadingDTOs
         public required string Email { get; set; }
         public string ?PhoneNumber { get; set; }
         public Role Role { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+        public DateTime? LastLoginAt { get; set; }
     }
 }

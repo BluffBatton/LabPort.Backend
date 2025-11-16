@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36511.14 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabPort.Backend.API", "LabPort.Backend.API\LabPort.Backend.API.csproj", "{BB15E10E-47FB-4BD5-ADCF-59625098C4A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabPort.Backend.Domain", "LabPort.Backend.Domain\LabPort.Backend.Domain.csproj", "{D7E101BC-297B-403D-9A44-6EC040AA9F4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabPort.Backend.Application", "LabPort.Backend.Application\LabPort.Backend.Application.csproj", "{057BCD76-273C-4C18-AE38-C3F443CC6AC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabPort.Backend.Contracts", "LabPort.Backend.Contracts\LabPort.Backend.Contracts.csproj", "{91FD7260-57C3-46DA-9DE1-C182400671EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LabPort.Backend.Infrastructure", "LabPort.Backend.Infrastructure\LabPort.Backend.Infrastructure.csproj", "{84613DB8-CF91-46FE-B830-8B2A523CF9D2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB15E10E-47FB-4BD5-ADCF-59625098C4A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB15E10E-47FB-4BD5-ADCF-59625098C4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB15E10E-47FB-4BD5-ADCF-59625098C4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB15E10E-47FB-4BD5-ADCF-59625098C4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7E101BC-297B-403D-9A44-6EC040AA9F4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7E101BC-297B-403D-9A44-6EC040AA9F4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7E101BC-297B-403D-9A44-6EC040AA9F4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7E101BC-297B-403D-9A44-6EC040AA9F4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{057BCD76-273C-4C18-AE38-C3F443CC6AC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{057BCD76-273C-4C18-AE38-C3F443CC6AC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{057BCD76-273C-4C18-AE38-C3F443CC6AC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{057BCD76-273C-4C18-AE38-C3F443CC6AC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91FD7260-57C3-46DA-9DE1-C182400671EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91FD7260-57C3-46DA-9DE1-C182400671EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91FD7260-57C3-46DA-9DE1-C182400671EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91FD7260-57C3-46DA-9DE1-C182400671EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84613DB8-CF91-46FE-B830-8B2A523CF9D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84613DB8-CF91-46FE-B830-8B2A523CF9D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84613DB8-CF91-46FE-B830-8B2A523CF9D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84613DB8-CF91-46FE-B830-8B2A523CF9D2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B9CDB9E-4BAB-4662-8027-471605B972C5}
+	EndGlobalSection
+EndGlobal

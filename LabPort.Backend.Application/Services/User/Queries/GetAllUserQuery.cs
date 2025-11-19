@@ -4,7 +4,7 @@ using LabPort.Backend.Contracts.DTOs.ReadingDTOs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace LabPort.Backend.Application.Services.User
+namespace LabPort.Backend.Application.Services.User.Queries
 {
     public class GetAllUserQuery : IRequest<List<UserDto>>
     {
@@ -29,7 +29,7 @@ namespace LabPort.Backend.Application.Services.User
                 LastName = u.LastName,
                 Email = u.Email,
                 PhoneNumber = u.PhoneNumber,
-                Role = (LabPort.Backend.Contracts.DTOs.Enums.Role)u.Role, // explicit cast to DTO Role enum
+                Role = (Contracts.DTOs.Enums.Role)u.Role, // explicit cast to DTO Role enum
                 CreatedAt = u.CreatedAt,
                 UpdatedAt = u.UpdatedAt,
                 LastLoginAt = u.LastLoginAt,

@@ -3,7 +3,7 @@ using LabPort.Backend.Contracts.DTOs.UpdateDTOs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace LabPort.Backend.Application.Services.User
+namespace LabPort.Backend.Application.Services.User.Commands
 {
     public class UpdateUserCommand : IRequest
     {

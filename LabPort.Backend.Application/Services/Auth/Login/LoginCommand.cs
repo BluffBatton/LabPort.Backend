@@ -51,7 +51,7 @@ namespace LabPort.Backend.Application.Services.Auth.Login
                 User = new UserInfoDto
                 {
                     Id = user.Id,
-                    Role = (LabPort.Backend.Contracts.DTOs.Enums.Role)user.Role
+                    Role = (Contracts.DTOs.Enums.Role)user.Role
                 }
             };
         }

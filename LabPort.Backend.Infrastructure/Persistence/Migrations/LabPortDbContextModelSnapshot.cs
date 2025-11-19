@@ -31,6 +31,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<double>("HumidityMax")
                         .HasColumnType("double precision");
 
@@ -77,6 +80,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -109,6 +115,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<double>("Humidity")
                         .HasColumnType("double precision");
 
@@ -139,6 +148,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                         .HasColumnType("character varying(100)");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Location")
@@ -176,6 +188,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -199,6 +214,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                         .HasColumnType("text");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("SampleId")
@@ -236,6 +254,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
@@ -283,6 +304,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -302,6 +326,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")

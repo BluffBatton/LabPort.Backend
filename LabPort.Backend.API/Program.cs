@@ -3,6 +3,7 @@ using LabPort.Backend.Infrastructure.Integration;
 using LabPort.Backend.Infrastructure.Persistence;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Text.Json;
@@ -36,7 +37,6 @@ namespace LabPort.Backend.API
             builder.Services.AddSwaggerGen();
 
             builder.Services.AddAutoMapper(cfg => { }, AppDomain.CurrentDomain.GetAssemblies());
-
 
             builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

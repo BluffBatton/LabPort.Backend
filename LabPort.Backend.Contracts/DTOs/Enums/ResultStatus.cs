@@ -4,6 +4,7 @@
     {
         Expected,
         Unexpected,
-        Failed
+        Failed,
+        Pending
     }
 }

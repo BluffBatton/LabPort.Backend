@@ -4,14 +4,14 @@ using LabPort.Backend.Contracts.DTOs.ReadingDTOs;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
-namespace LabPort.Backend.Application.Services.User
+namespace LabPort.Backend.Application.Services.User.Queries
 {
-    public class GetUserQuery : IRequest<UserDto>
+    public class GetCurrentUserQuery : IRequest<UserDto>
     {
 
     }
 
-    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, UserDto>
+    public class GetUserQueryHandler : IRequestHandler<GetCurrentUserQuery, UserDto>
     {
         private readonly ILabPortDbContext _context;
         private readonly IMapper _mapper;
@@ -24,7 +24,7 @@ namespace LabPort.Backend.Application.Services.User
             _userContextService = userContextService;
         }
 
-        public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
+        public async Task<UserDto> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
         {
             var userId = _userContextService.GetCurrentUserId();
 

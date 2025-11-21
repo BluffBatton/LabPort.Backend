@@ -25,13 +25,20 @@ namespace LabPort.Backend.Application.Services.Auth.Register
         public async Task<Guid> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
         {
             if (request == null)
+            {
                 throw new ArgumentNullException(nameof(request));
+            }
 
             if (request.Register == null)
+            {
                 throw new ArgumentNullException(nameof(request.Register), "Register payload is required.");
+            }
 
             if (request.Register.User == null)
+            {
                 throw new ArgumentNullException(nameof(request.Register.User), "User object is required.");
+            }
+                
 
             var userDto = request.Register.User;
             var containerDto = request.Register.Container; 
@@ -40,8 +47,10 @@ namespace LabPort.Backend.Application.Services.Auth.Register
                 .AnyAsync(u => u.Email == userDto.Email, cancellationToken);
 
             if (userExists)
+            {
                 throw new Exception("User already exists");
-
+            }
+                
             var user = _mapper.Map<Domain.Entities.User>(userDto);
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(userDto.PasswordHash);
             user.CreatedAt = DateTime.UtcNow;

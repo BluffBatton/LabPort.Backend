@@ -10,6 +10,8 @@ namespace LabPort.Backend.Infrastructure.Persistence
 
         public DbSet<Container> Containers { get; set; }
 
+        public DbSet<Sensor> Sensord { get; set; }
+
         public DbSet<SensorReading> SensorReadings { get; set; }
 
         public DbSet<Sample> Samples { get; set; }
@@ -23,6 +25,7 @@ namespace LabPort.Backend.Infrastructure.Persistence
         public DbSet<TestType> TestTypes { get; set; }
 
         public DbSet<TestResult> TestResults { get; set; }
+
 
         public LabPortDbContext(DbContextOptions<LabPortDbContext> options) : base(options)
         {
@@ -41,6 +44,7 @@ namespace LabPort.Backend.Infrastructure.Persistence
             modelBuilder.Entity<TestType>().HasQueryFilter(e => e.DeletedAt == null);
             modelBuilder.Entity<TestResult>().HasQueryFilter(e => e.DeletedAt == null);
             modelBuilder.Entity<Container>().HasQueryFilter(e => e.DeletedAt == null);
+            modelBuilder.Entity<Sensor>().HasQueryFilter(e => e.DeletedAt == null);
             modelBuilder.Entity<SensorReading>().HasQueryFilter(e => e.DeletedAt == null);
 
             base.OnModelCreating(modelBuilder);

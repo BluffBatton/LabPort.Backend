@@ -9,8 +9,7 @@ namespace LabPort.Backend.Domain.Entities
         public double Humidity { get; set; }
         public LidPosition LidPosition { get; set; }
 
-        public Guid ContainerId { get; set; }
-
-        public required virtual Container Container { get; set; }
+        public Guid SensorId { get; set; }
+        public virtual Sensor Sensor { get; set; }
     }
 }

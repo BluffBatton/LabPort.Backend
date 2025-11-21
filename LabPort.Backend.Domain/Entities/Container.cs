@@ -12,8 +12,9 @@ namespace LabPort.Backend.Domain.Entities
 
         public Guid UserId { get; set; }
 
+
         public virtual User ?User { get; set; }
-        public virtual ICollection<SensorReading> ?SensorReadings { get; set; }
+        public virtual Sensor ?Sensor { get; set; }
         public virtual ICollection<Sample> ?Samples { get; set; }
     }
 }

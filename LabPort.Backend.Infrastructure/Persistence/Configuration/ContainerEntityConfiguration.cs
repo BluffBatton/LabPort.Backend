@@ -1,5 +1,6 @@
 ﻿using LabPort.Backend.Domain.Entities;
 using LabPort.Backend.Infrastructure.Persistence.Common;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace LabPort.Backend.Infrastructure.Persistence.Configuration
@@ -13,19 +14,14 @@ namespace LabPort.Backend.Infrastructure.Persistence.Configuration
             builder.Property(c => c.Label)
                 .IsRequired()
                 .HasMaxLength(50);
-            builder.Property(c => c.TemperatureMin)
-                .IsRequired();
-            builder.Property(c => c.TemperatureMax)
-                .IsRequired();
-            builder.Property(c => c.HumidityMin)
-                .IsRequired();
-            builder.Property(c => c.HumidityMax)
-                .IsRequired();
-            
-            builder.HasMany(c => c.SensorReadings)
-                .WithOne(sr => sr.Container)
-                .HasForeignKey(sr => sr.ContainerId)
-                .OnDelete(Microsoft.EntityFrameworkCore.DeleteBehavior.Cascade);
+
+            builder.Property(c => c.TemperatureMin).IsRequired();
+
+            builder.Property(c => c.TemperatureMax).IsRequired();
+
+            builder.Property(c => c.HumidityMin).IsRequired();
+
+            builder.Property(c => c.HumidityMax).IsRequired();
         }
     }
 }

@@ -58,6 +58,12 @@ namespace LabPort.Backend.Application.Services.Auth.Login
 
         private bool VerifyPassword(string password, string passwordHash)
         {
+            Console.WriteLine("-------- PASSWORD DEBUG --------");
+            Console.WriteLine("RAW PASSWORD = '" + password + "'");
+            Console.WriteLine("HASH FROM DB = '" + passwordHash + "'");
+            Console.WriteLine("BCrypt.Verify = " + BCrypt.Net.BCrypt.Verify(password, passwordHash));
+            Console.WriteLine("--------------------------------");
+
             return BCrypt.Net.BCrypt.Verify(password, passwordHash);
         }
     }

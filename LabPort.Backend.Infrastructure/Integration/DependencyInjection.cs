@@ -1,5 +1,7 @@
 ﻿using LabPort.Backend.Application.Interfaces;
+using LabPort.Backend.Infrastructure.Integration.Alerts;
 using LabPort.Backend.Infrastructure.Integration.Authentication;
+using LabPort.Backend.Infrastructure.Integration.Background;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +14,8 @@ namespace LabPort.Backend.Infrastructure.Integration
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IUserContextService, UserContextService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IAlertService, AlertService>();
+            services.AddHostedService<SensorReadingCleanupWorker>();
 
             return services;
         }

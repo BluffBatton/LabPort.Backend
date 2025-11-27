@@ -12,7 +12,7 @@ namespace LabPort.Backend.Contracts.DTOs.CreateDTOs
         public string? ValueText { get; set; }
         public string? Unit { get; set; }
 
-        public ResultStatus ResultStatus { get; set; } = ResultStatus.Pending;
+        public ResultStatus ResultStatus { get; set; }
         public string? Note { get; set; }
     }
 }

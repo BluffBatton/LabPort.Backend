@@ -29,6 +29,7 @@ namespace LabPort.Backend.Application.Services.Source.Command
 
         public async Task Handle(CreateSourceCommand request, CancellationToken cancellationToken)
         {
+            var dto = request.Dto;
 
             var sourceExists = await _context.Sources.AnyAsync(s => s.Name == request.Dto.Name, cancellationToken);
 
@@ -37,7 +38,7 @@ namespace LabPort.Backend.Application.Services.Source.Command
                 throw new InvalidOperationException($"Source with name {request.Dto.Name} already exists");
             }
 
-            var source = _mapper.Map<Domain.Entities.Source>(sourceExists);
+            var source = _mapper.Map<Domain.Entities.Source>(dto);
             source.CreatedAt = DateTime.UtcNow;
 
             await _context.Sources.AddAsync(source, cancellationToken);

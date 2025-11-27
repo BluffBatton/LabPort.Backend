@@ -1,4 +1,5 @@
 ﻿using LabPort.Backend.Application.Interfaces;
+using LabPort.Backend.Infrastructure.Persistence.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace LabPort.Backend.Infrastructure.Persistence
             });
             services.AddScoped<ILabPortDbContext>(provider =>
             provider.GetRequiredService<LabPortDbContext>());
+            services.AddScoped<ISensorReadingCleanupService, SensorReadingCleanupService>();
 
             return services;
         }

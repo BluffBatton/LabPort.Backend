@@ -11,6 +11,5 @@ namespace LabPort.Backend.Domain.Entities
         public required virtual Container Container { get; set; }
 
         public virtual ICollection<SensorReading> ?Readings { get; set; }
-        
     }
 }

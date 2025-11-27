@@ -5,8 +5,10 @@ namespace LabPort.Backend.Application.Interfaces
 {
     public interface ILabPortDbContext
     {
+        DbSet<Alert> Alerts { get; }
         DbSet<User> Users { get; }
         DbSet<Container> Containers { get; }
+        DbSet<Sensor> Sensors { get; }
         DbSet<SensorReading> SensorReadings { get; }
         DbSet<Sample> Samples { get; }  
         DbSet<Source> Sources { get; }

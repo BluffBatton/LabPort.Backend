@@ -1,5 +1,7 @@
 ﻿using FluentValidation;
 using LabPort.Backend.Application.Common.Behavior;
+using LabPort.Backend.Application.Interfaces;
+using LabPort.Backend.Application.Services.TestResult.Evaluator;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -18,6 +20,7 @@ namespace LabPort.Backend.Application
 
             services.AddAutoMapper(cfg => { }, Assembly.GetExecutingAssembly());
 
+            services.AddScoped<ITestResultEvaluator, TestResultEvaluator>();
 
             return services;
         }

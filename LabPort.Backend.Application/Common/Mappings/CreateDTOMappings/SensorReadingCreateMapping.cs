@@ -7,7 +7,12 @@ namespace LabPort.Backend.Application.Common.Mappings.CreateDTOMappings
     {
         public SensorReadingCreateMapping()
         {
-            CreateMap<SensorReadingCreateDto, SensorReading>();
+            CreateMap<SensorReadingCreateDto, SensorReading>()
+                .ForMember(d => d.Id, opt => opt.Ignore())
+                .ForMember(d => d.SensorId, opt => opt.Ignore())
+                .ForMember(d => d.Sensor, opt => opt.Ignore())
+                .ForMember(d => d.CreatedAt, opt => opt.Ignore())
+                .ForMember(d => d.UpdatedAt, opt => opt.Ignore());
         }
     }
 }

@@ -12,6 +12,10 @@ namespace LabPort.Backend.Infrastructure.Persistence.Configuration
 
             builder.Property(tt => tt.Name)
                 .IsRequired();
+
+            builder.Property(tt => tt.ReferenceMin);
+            builder.Property(tt => tt.ReferenceMax);
+            builder.Property(tt => tt.Unit);
         }
     }
 }

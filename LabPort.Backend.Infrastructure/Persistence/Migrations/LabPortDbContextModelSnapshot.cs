@@ -22,6 +22,45 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("LabPort.Backend.Domain.Entities.Alert", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Details")
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Message")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("ReadAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("SensorReadingId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SensorReadingId")
+                        .IsUnique();
+
+                    b.ToTable("Alerts");
+                });
+
             modelBuilder.Entity("LabPort.Backend.Domain.Entities.Container", b =>
                 {
                     b.Property<Guid>("Id")
@@ -31,7 +70,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<double>("HumidityMax")
@@ -80,7 +119,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
@@ -115,7 +154,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DeviceKey")
@@ -136,7 +175,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.HasIndex("ContainerId")
                         .IsUnique();
 
-                    b.ToTable("Sensord");
+                    b.ToTable("Sensors");
                 });
 
             modelBuilder.Entity("LabPort.Backend.Domain.Entities.SensorReading", b =>
@@ -148,7 +187,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<double>("Humidity")
@@ -186,7 +225,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Location")
@@ -224,7 +263,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
@@ -252,7 +291,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("SampleId")
@@ -292,7 +331,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
@@ -340,11 +379,20 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("ReferenceMax")
+                        .HasColumnType("double precision");
+
+                    b.Property<double?>("ReferenceMin")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Unit")
                         .HasColumnType("text");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -364,7 +412,7 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DeletedAt")
+                    b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
@@ -408,6 +456,17 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("LabPort.Backend.Domain.Entities.Alert", b =>
+                {
+                    b.HasOne("LabPort.Backend.Domain.Entities.SensorReading", "SensorReading")
+                        .WithOne("Alert")
+                        .HasForeignKey("LabPort.Backend.Domain.Entities.Alert", "SensorReadingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SensorReading");
                 });
 
             modelBuilder.Entity("LabPort.Backend.Domain.Entities.Container", b =>
@@ -518,6 +577,11 @@ namespace LabPort.Backend.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("LabPort.Backend.Domain.Entities.Sensor", b =>
                 {
                     b.Navigation("Readings");
+                });
+
+            modelBuilder.Entity("LabPort.Backend.Domain.Entities.SensorReading", b =>
+                {
+                    b.Navigation("Alert");
                 });
 
             modelBuilder.Entity("LabPort.Backend.Domain.Entities.Source", b =>

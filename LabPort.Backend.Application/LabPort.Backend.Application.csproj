@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\Admin\" />
+    <Folder Include="Services\Alert\Commands\" />
   </ItemGroup>
 
 </Project>

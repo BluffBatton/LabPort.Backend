@@ -8,7 +8,7 @@ namespace LabPort.Backend.Application.Services.Auth.Register
 {
     public class RegisterUserCommand : IRequest<Guid>
     {
-        public RegisterDto Register { get; set; }
+        public required RegisterDto Register { get; set; }
     }
 
     public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, Guid>

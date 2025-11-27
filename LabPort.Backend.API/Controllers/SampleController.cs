@@ -13,7 +13,7 @@ namespace LabPort.Backend.API.Controllers
     public class SampleController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> CreateSample([FromBody]SampleCreateDto dto)
+        public async Task<IActionResult> CreateSample([FromBody] SampleCreateDto dto)
         {
             var command = new CreateSampleCommand(dto);
             await Mediator.Send(command);
@@ -36,7 +36,7 @@ namespace LabPort.Backend.API.Controllers
             return Ok(result);
         }
 
-        [HttpPatch]
+        [HttpPatch("{id}")]
         public async Task<IActionResult> UpdateSample(Guid id, [FromBody] SampleUpdateDto dto)
         {
             var command = new UpdateSampleCommand(id, dto);
@@ -44,7 +44,7 @@ namespace LabPort.Backend.API.Controllers
             return Ok();
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSample(Guid id)
         {
             var command = new DeleteSampleCommand(id);

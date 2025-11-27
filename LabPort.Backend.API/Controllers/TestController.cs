@@ -44,28 +44,12 @@ namespace LabPort.Backend.API.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateTestType([FromBody] TestTypeCreateDto dto)
-        {
-            var command = new CreateTestTypeCommand(dto);
-            await Mediator.Send(command);
-            return Ok();
-        }
-
         [HttpGet]
         public async Task<ActionResult<List<TestTypeDto>>> GetTestTypeQuery()
         {
             var query = new GetTestTypeQuery();
             var result = await Mediator.Send(query);
             return Ok(result);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTestType(Guid id)
-        {
-            var command = new DeleteTestTypeCommand(id);
-            await Mediator.Send(command);
-            return Ok();
         }
     }
 }

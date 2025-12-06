@@ -36,18 +36,24 @@ namespace LabPort.Backend.Application.Services.SensorReading.Commands
         {
             var sensorReading = request.SensorReading;
 
+            var key = sensorReading.DeviceKey.Trim().ToLower();
+
             var sensor = await _context.Sensors
                 .Include(s => s.Container)
-                .FirstOrDefaultAsync(s => s.DeviceKey == sensorReading.DeviceKey, cancellationToken);
+                .FirstOrDefaultAsync(
+                    s => s.DeviceKey.ToLower() == key,
+                    cancellationToken);
 
             if (sensor == null)
-            {
-                throw new Exception($"Sensor with DeviceKey '{sensorReading.DeviceKey}' not found.");
-            }
+                throw new KeyNotFoundException($"Sensor with DeviceKey '{sensorReading.DeviceKey}' not found");
+
+            if (sensor.Container == null || sensor.Container.DeletedAt != null)
+                throw new InvalidOperationException("Sensor container is inactive or deleted");
 
             var reading = _mapper.Map<Domain.Entities.SensorReading>(sensorReading);
             reading.SensorId = sensor.Id;
             reading.CreatedAt = DateTime.UtcNow;
+            //reading.
 
             await _context.SensorReadings.AddAsync(reading, cancellationToken);
 

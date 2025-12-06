@@ -2,6 +2,7 @@
 using LabPort.Backend.Application.Services.Admin.Queries;
 using LabPort.Backend.Application.Services.Source.Command;
 using LabPort.Backend.Application.Services.Test.Commands;
+using LabPort.Backend.Application.Services.User.Commands;
 using LabPort.Backend.Application.Services.User.Queries;
 using LabPort.Backend.Contracts.DTOs.CreateDTOs;
 using LabPort.Backend.Contracts.DTOs.ReadingDTOs;
@@ -19,7 +20,7 @@ namespace LabPort.Backend.API.Controllers
         {
             var query = new GetAllUserQuery();
             var result = await Mediator.Send(query);
-            return Ok(result);  
+            return Ok(result);
         }
 
         [HttpPost]
@@ -30,7 +31,7 @@ namespace LabPort.Backend.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("test-type/{id}")]
         public async Task<IActionResult> DeleteTestType(Guid id)
         {
             var command = new DeleteTestTypeCommand(id);
@@ -38,7 +39,7 @@ namespace LabPort.Backend.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("source-type/{id}")]
         public async Task<IActionResult> DeleteSourceType(Guid Id)
         {
             var command = new DeleteSourceTypeCommand(Id);
@@ -54,7 +55,7 @@ namespace LabPort.Backend.API.Controllers
             return Ok();
         }
 
-        [HttpGet]
+        [HttpGet("{days}")]
         public async Task<ActionResult<AdminStatisticsDto>> GetStatistics([FromQuery] int days = 7)
         {
             var query = new GetAdminStatisticsQuery { Days = days };
@@ -70,5 +71,12 @@ namespace LabPort.Backend.API.Controllers
             return File(csvBytes, "text/csv", fileName);
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUserById([FromQuery] Guid id)
+        {
+            var command = new DeleteUserByIdCommand(id);
+            await Mediator.Send(command);
+            return Ok();
+        }
     }
 }

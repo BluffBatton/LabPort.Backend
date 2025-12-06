@@ -11,7 +11,9 @@ namespace LabPort.Backend.Application.Common.Mappings.ReadingDTOMappings
                 .ForMember(d => d.ContainerOwnerFullName,
                            o => o.MapFrom(s => s.Container.User.FirstName + " " + s.Container.User.LastName))
                 .ForMember(d => d.SourceName,
-                           o => o.MapFrom(s => s.Source.Name));
+                           o => o.MapFrom(s => s.Source.Name))
+                .ForMember(d => d.SourceTypeName,
+                           o => o.MapFrom(st => st.Source.SourceType.Name));
         }
     }
 }

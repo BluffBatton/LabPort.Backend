@@ -1,0 +1,35 @@
+[33mcommit 19efe3a696c26daf783825679287169b12c67947[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mdev[m[33m)[m
+Author: Oleksandr Parkhomenko <havchik17@gmail.com>
+Date:   Sat Dec 6 14:01:05 2025 +0200
+
+    Major features were implemented: alert system, statistics, reports, auto-delete of old sensor readings
+
+[33mcommit 6f7a11556c0af0dcd312a0e836de3e65b1995320[m[33m ([m[1;31muni/main[m[33m, [m[1;31morigin/main[m[33m, [m[1;32mmain[m[33m)[m
+Author: Oleksandr Parkhomenko <havchik17@gmail.com>
+Date:   Thu Nov 27 10:41:33 2025 +0200
+
+    Refactored admin controller, WIP with PDF exports, added statistics and sensorreadings crud
+
+[33mcommit b9a626dfd3b3c387e6abfb2c3fb70fa146c087ab[m
+Author: Oleksandr Parkhomenko <havchik17@gmail.com>
+Date:   Fri Nov 21 22:15:11 2025 +0200
+
+    Refactored some logic in IoT device relationship with readings and containers
+
+[33mcommit 07b32db05bcad6b697518f51d6915a7a19bd3759[m
+Author: Oleksandr Parkhomenko <havchik17@gmail.com>
+Date:   Thu Nov 20 01:05:19 2025 +0200
+
+    Added large part of planned features in terms of VS doc
+
+[33mcommit 43e0e803be6cf5cd0427c22c9960cc7a6b4451a6[m
+Author: Oleksandr Parkhomenko <havchik17@gmail.com>
+Date:   Sun Nov 16 23:17:13 2025 +0200
+
+    Features:
+
+[33mcommit 8501cf810c982526fa21df8c9642f928c0e2a15c[m
+Author: Oleksandr Parkhomenko <havchik17@gmail.com>
+Date:   Sun Nov 16 17:27:04 2025 +0200
+
+    Init commit: already made backend skeleton with auth and basic user interactions

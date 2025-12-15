@@ -24,18 +24,15 @@ namespace LabPort.Backend.Infrastructure.Integration.Background
             var intervalMinutesStr = configuration.GetSection("SensorCleanup:IntervalMinutes").Value;
             var maxAgeDaysStr = configuration.GetSection("SensorCleanup:MaxAgeDays").Value;
 
-            var intervalMinutes = !string.IsNullOrEmpty(intervalMinutesStr)
-                ? int.Parse(intervalMinutesStr) : 60;
-            var maxAgeDays = !string.IsNullOrEmpty(maxAgeDaysStr)
-                ? int.Parse(maxAgeDaysStr) : 7;
+            var intervalMinutes = !string.IsNullOrEmpty(intervalMinutesStr) ? int.Parse(intervalMinutesStr) : 60;
+            var maxAgeDays = !string.IsNullOrEmpty(maxAgeDaysStr) ? int.Parse(maxAgeDaysStr) : 7;
 
             _interval = TimeSpan.FromMinutes(intervalMinutes);
             _maxAge = TimeSpan.FromDays(maxAgeDays);
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            _logger.LogInformation("SensorReadingCleanupWorker started. Interval: {Interval}, MaxAge: {MaxAge}",
-    _interval, _maxAge);
+            _logger.LogInformation("SensorReadingCleanupWorker started. Interval: {Interval}, MaxAge: {MaxAge}", _interval, _maxAge);
 
             while (!stoppingToken.IsCancellationRequested)
             {

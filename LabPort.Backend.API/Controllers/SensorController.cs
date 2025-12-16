@@ -60,5 +60,13 @@ namespace LabPort.Backend.API.Controllers
             var result = await Mediator.Send(query);
             return Ok(result);
         }
+
+        [HttpGet("GetByDeviceKey/{deviceKey}")]
+        public async Task<IActionResult> GetByDeviceKey(string deviceKey)
+        {
+            var query = new GetSensorStatusQuery(deviceKey);
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
     }
 }

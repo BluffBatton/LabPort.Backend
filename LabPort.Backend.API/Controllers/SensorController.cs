@@ -61,6 +61,8 @@ namespace LabPort.Backend.API.Controllers
             return Ok(result);
         }
 
+
+        [AllowAnonymous]
         [HttpGet("GetByDeviceKey/{deviceKey}")]
         public async Task<IActionResult> GetByDeviceKey(string deviceKey)
         {

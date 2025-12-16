@@ -50,8 +50,7 @@ namespace LabPort.Backend.Application.Services.Sensor.Commands
             sensor.CurrentLidPosition = newDomainState;
             await _context.SaveChangesAsync(cancellationToken);
 
-            string anglePayload = newDomainState == Domain.Enums.LidPosition.Open ? "90" : "0";
-            string topic = $"labport/{sensor.DeviceKey}/servo";
+            string anglePayload = newDomainState == Domain.Enums.LidPosition.Open ? "0" : "90"; string topic = $"labport/{sensor.DeviceKey}/servo";
 
             await _mqttService.PublishAsync(topic, anglePayload);
 

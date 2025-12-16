@@ -2,6 +2,7 @@
 using LabPort.Backend.Infrastructure.Integration.Alerts;
 using LabPort.Backend.Infrastructure.Integration.Authentication;
 using LabPort.Backend.Infrastructure.Integration.Background;
+using LabPort.Backend.Infrastructure.Integration.IoT;
 using LabPort.Backend.Infrastructure.Integration.Reporting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace LabPort.Backend.Infrastructure.Integration
             services.AddScoped<IAlertService, AlertService>();
             services.AddHostedService<SensorReadingCleanupWorker>();
             services.AddScoped<IPdfReportService, PdfReportService>();
+            services.AddSingleton<IMqttService, MqttService>();
 
             return services;
         }

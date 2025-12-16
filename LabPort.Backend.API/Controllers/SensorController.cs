@@ -2,6 +2,7 @@
 using LabPort.Backend.Application.Services.Sensor.Commands;
 using LabPort.Backend.Application.Services.Sensor.Queries;
 using LabPort.Backend.Contracts.DTOs.CreateDTOs;
+using LabPort.Backend.Contracts.DTOs.IoT;
 using LabPort.Backend.Contracts.DTOs.ReadingDTOs;
 using LabPort.Backend.Contracts.DTOs.UpdateDTOs;
 using Microsoft.AspNetCore.Authorization;
@@ -18,6 +19,14 @@ namespace LabPort.Backend.API.Controllers
             var command = new CreateSensorCommand(dto);
             await Mediator.Send(command);
             return Ok();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ToggleLid()
+        {
+            var command = new ToggleLidCommand();
+            var newState = await Mediator.Send(command);
+            return Ok(new { currentState = newState.ToString() });
         }
 
         [HttpGet("{id}")]

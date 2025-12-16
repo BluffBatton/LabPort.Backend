@@ -36,11 +36,9 @@ namespace LabPort.Backend.Application.Services.Auth.Login
                 throw new UnauthorizedAccessException("Invalid refresh token");
             }
 
-            // Generate new tokens
             var newAccessToken = _jwtService.GenerateAccessToken(user);
             var newRefreshToken = _jwtService.GenerateRefreshToken();
 
-            // Update user's refresh token
             user.RefreshToken = newRefreshToken;
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(1);
 

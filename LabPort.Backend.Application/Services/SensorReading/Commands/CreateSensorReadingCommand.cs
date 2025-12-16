@@ -50,6 +50,8 @@ namespace LabPort.Backend.Application.Services.SensorReading.Commands
             if (sensor.Container == null || sensor.Container.DeletedAt != null)
                 throw new InvalidOperationException("Sensor container is inactive or deleted");
 
+            sensor.CurrentLidPosition = (Domain.Enums.LidPosition)sensorReading.LidPosition;
+
             var reading = _mapper.Map<Domain.Entities.SensorReading>(sensorReading);
             reading.SensorId = sensor.Id;
             reading.CreatedAt = DateTime.UtcNow;

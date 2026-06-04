@@ -103,10 +103,12 @@ namespace LabPort.Backend.API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowAllOrigins");
 
             app.UseAuthentication();
             app.UseAuthorization();
            
+            
 
             app.MapControllers();
 

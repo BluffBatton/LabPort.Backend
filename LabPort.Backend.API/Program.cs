@@ -22,6 +22,16 @@ namespace LabPort.Backend.API
                 .AddPersistance(builder.Configuration)
                 .AddInfrastructureIntegration(builder.Configuration);
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigins", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             // Add services to the container.
             builder.Services.AddHttpContextAccessor();
 
@@ -93,9 +103,10 @@ namespace LabPort.Backend.API
 
             app.UseHttpsRedirection();
 
+
             app.UseAuthentication();
             app.UseAuthorization();
-
+           
 
             app.MapControllers();
 

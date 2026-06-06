@@ -1,5 +1,4 @@
-﻿using LabPort.Backend.API.Common;
-using LabPort.Backend.Application.Services.Sensor.Queries;
+using LabPort.Backend.API.Common;
 using LabPort.Backend.Application.Services.SensorReading.Commands;
 using LabPort.Backend.Application.Services.SensorReading.Queries;
 using LabPort.Backend.Contracts.DTOs.CreateDTOs;
@@ -23,7 +22,7 @@ namespace LabPort.Backend.API.Controllers
         [HttpGet("{Id}")]
         public async Task<ActionResult<SensorReadingDto>> GetSensorReadingById(Guid Id)
         {
-            var query = new GetSensorByIdQuery(Id);
+            var query = new GetSensorReadingByIdQuery(Id);
             var result = await Mediator.Send(query);
             return Ok(result);
         }
@@ -34,6 +33,6 @@ namespace LabPort.Backend.API.Controllers
             var command = new CreateSensorReadingCommand(dto);
             await Mediator.Send(command);
             return Ok();
-        } 
+        }
     }
 }

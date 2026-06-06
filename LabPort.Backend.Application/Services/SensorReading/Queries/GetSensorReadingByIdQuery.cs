@@ -51,7 +51,7 @@ namespace LabPort.Backend.Application.Services.SensorReading.Queries
 
             if (reading == null)
             {
-                throw new Exception($"SensorReading with id {request.Id} was not found or does not belong to current user.");
+                throw new KeyNotFoundException($"SensorReading with id {request.Id} was not found or does not belong to current user.");
             }
 
             return _mapper.Map<SensorReadingDto>(reading);

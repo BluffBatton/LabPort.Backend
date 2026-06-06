@@ -1,7 +1,10 @@
 using LabPort.Backend.Application;
 using LabPort.Backend.Infrastructure.Integration;
 using LabPort.Backend.Infrastructure.Persistence;
+using FluentValidation;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -87,6 +90,49 @@ namespace LabPort.Backend.API
             });
 
             var app = builder.Build();
+
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Run(async context =>
+                {
+                    var exception = context.Features.Get<IExceptionHandlerPathFeature>()?.Error;
+
+                    var (statusCode, title, detail) = exception switch
+                    {
+                        KeyNotFoundException => (
+                            StatusCodes.Status404NotFound,
+                            "Resource not found",
+                            exception.Message),
+                        InvalidOperationException => (
+                            StatusCodes.Status400BadRequest,
+                            "Invalid request",
+                            exception.Message),
+                        UnauthorizedAccessException => (
+                            StatusCodes.Status401Unauthorized,
+                            "Unauthorized",
+                            exception.Message),
+                        ValidationException validationException => (
+                            StatusCodes.Status400BadRequest,
+                            "Validation failed",
+                            string.Join(" ", validationException.Errors.Select(error => error.ErrorMessage))),
+                        _ => (
+                            StatusCodes.Status500InternalServerError,
+                            "Unexpected error",
+                            "An unexpected error occurred.")
+                    };
+
+                    context.Response.StatusCode = statusCode;
+                    context.Response.ContentType = "application/problem+json";
+
+                    await context.Response.WriteAsJsonAsync(new ProblemDetails
+                    {
+                        Status = statusCode,
+                        Title = title,
+                        Detail = detail,
+                        Instance = context.Request.Path
+                    });
+                });
+            });
 
             using (var scope = app.Services.CreateScope())
             {

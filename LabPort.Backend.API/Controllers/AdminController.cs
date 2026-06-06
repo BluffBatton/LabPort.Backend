@@ -1,11 +1,14 @@
-﻿using LabPort.Backend.API.Common;
+using LabPort.Backend.API.Common;
+using LabPort.Backend.Application.Services.Admin.Commands;
 using LabPort.Backend.Application.Services.Admin.Queries;
 using LabPort.Backend.Application.Services.Source.Command;
 using LabPort.Backend.Application.Services.Test.Commands;
 using LabPort.Backend.Application.Services.User.Queries;
 using LabPort.Backend.Contracts.DTOs.CreateDTOs;
 using LabPort.Backend.Contracts.DTOs.ReadingDTOs;
+using LabPort.Backend.Contracts.DTOs.Settings;
 using LabPort.Backend.Contracts.DTOs.Statistics.Admin;
+using LabPort.Backend.Contracts.DTOs.UpdateDTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +22,23 @@ namespace LabPort.Backend.API.Controllers
         {
             var query = new GetAllUserQuery();
             var result = await Mediator.Send(query);
-            return Ok(result);  
+            return Ok(result);
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<UserDto>> UpdateUserRole(Guid id, [FromBody] UserRoleUpdateDto dto)
+        {
+            var command = new UpdateUserRoleCommand(id, dto);
+            var result = await Mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteUser(Guid id)
+        {
+            var command = new DeleteUserByAdminCommand(id);
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [HttpPost]
@@ -38,20 +57,36 @@ namespace LabPort.Backend.API.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSourceType(Guid Id)
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<TestTypeDto>> UpdateTestType(Guid id, [FromBody] TestTypeUpdateDto dto)
         {
-            var command = new DeleteSourceTypeCommand(Id);
+            var command = new UpdateTestTypeCommand(id, dto);
+            var result = await Mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSourceType(Guid id)
+        {
+            var command = new DeleteSourceTypeCommand(id);
             await Mediator.Send(command);
             return NoContent();
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateSourceType(SourceTypeCreateDto dto)
+        public async Task<IActionResult> CreateSourceType([FromBody] SourceTypeCreateDto dto)
         {
             var command = new CreateSourceTypeCommand(dto);
             await Mediator.Send(command);
             return Ok();
+        }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<SourceTypeDto>> UpdateSourceType(Guid id, [FromBody] SourceTypeUpdateDto dto)
+        {
+            var command = new UpdateSourceTypeCommand(id, dto);
+            var result = await Mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpGet]
@@ -70,5 +105,20 @@ namespace LabPort.Backend.API.Controllers
             return File(csvBytes, "text/csv", fileName);
         }
 
+        [HttpGet]
+        public async Task<ActionResult<SettingsBackupDto>> ExportSettingsBackup()
+        {
+            var query = new ExportSettingsBackupQuery();
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<SettingsBackupImportResultDto>> ImportSettingsBackup([FromBody] SettingsBackupDto dto)
+        {
+            var command = new ImportSettingsBackupCommand(dto);
+            var result = await Mediator.Send(command);
+            return Ok(result);
+        }
     }
 }

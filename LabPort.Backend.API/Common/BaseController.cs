@@ -10,12 +10,16 @@ namespace LabPort.Backend.API.Common
     {
         private IMediator _mediator;
         private IUserContextService _userContextService;
+        //private IPdfReportService _pdfReportService;
 
         protected IMediator Mediator =>
             _mediator ??= HttpContext.RequestServices.GetService<IMediator>();
 
         protected IUserContextService UserContextService =>
             _userContextService ??= HttpContext.RequestServices.GetService<IUserContextService>();
+
+        //protected IPdfReportService PdfReportService =>
+        //     _pdfReportService ??= HttpContext.RequestServices.GetService<IPdfReportService>();
 
         protected Guid UserId => UserContextService.GetCurrentUserId() ?? Guid.Empty;
     }

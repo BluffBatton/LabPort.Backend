@@ -8,8 +8,10 @@
 
         public Guid ContainerId { get; set; }
         public required string ContainerOwnerFullName { get; set; }
+
         public Guid SourceId { get; set; }
         public required string SourceName { get; set; }
 
+        public string? SourceTypeName { get; set; }
     }
 }

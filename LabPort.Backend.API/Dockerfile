@@ -7,6 +7,7 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 
+<<<<<<< HEAD
 COPY ["LabPort.Backend.API/LabPort.Backend.API.csproj", "LabPort.Backend.API/"]
 COPY ["LabPort.Backend.Application/LabPort.Backend.Application.csproj", "LabPort.Backend.Application/"]
 COPY ["LabPort.Backend.Contracts/LabPort.Backend.Contracts.csproj", "LabPort.Backend.Contracts/"]
@@ -20,6 +21,8 @@ COPY . .
 WORKDIR "/src/LabPort.Backend.API"
 RUN dotnet build "LabPort.Backend.API.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
+=======
+>>>>>>> dev
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "LabPort.Backend.API.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false

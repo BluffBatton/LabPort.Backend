@@ -51,5 +51,28 @@ namespace LabPort.Backend.API.Controllers
             await Mediator.Send(command);
             return Ok();
         }
+
+        [HttpGet("search")]
+        public async Task<ActionResult<List<SampleDto>>> SearchSamples(
+            [FromQuery] string? name,
+            [FromQuery] Guid? sourceId,
+            [FromQuery] string? sourceTypeName,
+            [FromQuery] Guid? containerId,
+            [FromQuery] DateTime? dateFrom,
+            [FromQuery] DateTime? dateTo)
+        {
+            var query = new SearchSamplesQuery
+            {
+                Name = name,
+                SourceId = sourceId,
+                SourceTypeName = sourceTypeName,
+                ContainerId = containerId,
+                DateFrom = dateFrom,
+                DateTo = dateTo
+            };
+
+            var result = await Mediator.Send(query);
+            return Ok(result);
+        }
     }
 }

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LabPort.Backend.API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class SensorReadingController : BaseController
     {
         [HttpGet("{take}")]

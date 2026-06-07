@@ -36,7 +36,6 @@ namespace LabPort.Backend.Application.Services.Admin.Queries
             var totalSamples = await _context.Samples.CountAsync(cancellationToken);
             var totalTests = await _context.Tests.CountAsync(cancellationToken);
 
-            // предполагаем, что в контексте есть DbSet<Alert> Alerts
             var totalAlerts = await _context.Alerts.CountAsync(cancellationToken);
 
             return new AdminStatisticsDto

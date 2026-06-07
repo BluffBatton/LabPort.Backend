@@ -59,6 +59,7 @@ namespace LabPort.Backend.Application.Services.Sensor.Commands
 
             var sensor = _mapper.Map<Domain.Entities.Sensor>(dto);
             sensor.ContainerId = container.Id;
+
             sensor.CreatedAt = DateTime.UtcNow;
 
             await _context.Sensors.AddAsync(sensor, cancellationToken);

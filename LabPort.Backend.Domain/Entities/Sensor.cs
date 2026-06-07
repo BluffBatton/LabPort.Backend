@@ -1,4 +1,5 @@
 ﻿using LabPort.Backend.Domain.Common;
+using LabPort.Backend.Domain.Enums;
 
 namespace LabPort.Backend.Domain.Entities
 {
@@ -10,6 +11,7 @@ namespace LabPort.Backend.Domain.Entities
         public Guid ContainerId { get; set; }
         public required virtual Container Container { get; set; }
 
+        public LidPosition CurrentLidPosition { get; set; } = LidPosition.Closed;
         public virtual ICollection<SensorReading> ?Readings { get; set; }
     }
 }

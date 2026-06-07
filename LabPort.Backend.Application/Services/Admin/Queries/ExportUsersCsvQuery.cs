@@ -40,16 +40,36 @@ namespace LabPort.Backend.Application.Services.Admin.Queries
                 .AsNoTracking()
                 .ToListAsync(ct);
 
-            // CSV building
             var sb = new StringBuilder();
+
+            sb.Append('\uFEFF');
+
             sb.AppendLine("UserId,Email,FullName,SamplesCount,TestsCount,AlertsCount");
 
             foreach (var r in data)
             {
-                sb.AppendLine($"{r.Id},{r.Email},{r.FullName},{r.Samples},{r.Tests},{r.Alerts}");
+                sb.AppendLine(string.Join(",",
+                    Csv(r.Id),
+                    Csv(r.Email),
+                    Csv(r.FullName),
+                    Csv(r.Samples),
+                    Csv(r.Tests),
+                    Csv(r.Alerts)
+                ));
             }
 
             return Encoding.UTF8.GetBytes(sb.ToString());
+        }
+
+        private static string Csv(object value)
+        {
+            if (value == null) return "\"\"";
+
+            var str = value.ToString() ?? "";
+
+            str = str.Replace("\"", "\"\"");
+
+            return $"\"{str}\"";
         }
     }
 }

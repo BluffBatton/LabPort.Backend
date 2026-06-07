@@ -19,6 +19,9 @@ namespace LabPort.Backend.Infrastructure.Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(100);
 
+            builder.Property(x => x.CurrentLidPosition)
+                .IsRequired();
+
             builder.HasOne(x => x.Container)
                 .WithOne(x => x.Sensor)
                 .HasForeignKey<Sensor>(x => x.ContainerId)

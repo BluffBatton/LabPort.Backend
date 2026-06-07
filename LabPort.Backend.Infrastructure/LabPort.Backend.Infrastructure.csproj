@@ -1,32 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Persistence\Migrations\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Persistence\Migrations\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.22">
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.14.0" />
+		<PackageReference Include="MQTTnet" Version="4.3.7.1207" />
+		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
+		<PackageReference Include="QuestPDF" Version="2025.7.4" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+	</ItemGroup>
 
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.14.0" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.12" />
-    <PackageReference Include="QuestPDF" Version="2025.7.4" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LabPort.Backend.Application\LabPort.Backend.Application.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\LabPort.Backend.Application\LabPort.Backend.Application.csproj" />
+		<ProjectReference Include="..\LabPort.Backend.Contracts\LabPort.Backend.Contracts.csproj" />
+		<ProjectReference Include="..\LabPort.Backend.Domain\LabPort.Backend.Domain.csproj" />
+	</ItemGroup>
 
 </Project>

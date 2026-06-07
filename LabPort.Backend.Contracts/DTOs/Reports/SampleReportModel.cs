@@ -18,8 +18,6 @@
         public double HumidityMin { get; set; }
         public double HumidityMax { get; set; }
 
-        public List<SampleReportTestResultModel> Tests { get; set; } = new();
-
-        public required string SummaryConclusion { get; set; }
+        public string SummaryConclusion { get; set; } = "—"; 
     }
 }

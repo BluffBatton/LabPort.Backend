@@ -65,20 +65,20 @@ namespace LabPort.Backend.API.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteSourceType(Guid id)
-        {
-            var command = new DeleteSourceTypeCommand(id);
-            await Mediator.Send(command);
-            return NoContent();
-        }
-
         [HttpPost]
         public async Task<IActionResult> CreateSourceType([FromBody] SourceTypeCreateDto dto)
         {
             var command = new CreateSourceTypeCommand(dto);
             await Mediator.Send(command);
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteSourceType(Guid id)
+        {
+            var command = new DeleteSourceTypeCommand(id);
+            await Mediator.Send(command);
+            return NoContent();
         }
 
         [HttpPatch("{id}")]
